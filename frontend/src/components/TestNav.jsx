@@ -17,6 +17,9 @@ const TestNav = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
+        <li>
+          <Link to="/auth">Auth</Link>
+        </li>
       </ul>
     </nav>
   );
