@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const bodyParser = require("body-parser");
-const http = require("http"); // Import HTTP module
-const WebSocket = require("ws"); // Import WebSocket package
+const http = require("http");
+const WebSocket = require("ws");
 const app = express();
 const doctorRoutes = require("./routes/doctorRoutes");
 const { vectorizeSpecialties } = require("./services/doctorService");
+const { matchDoctorByQuery } = require("./controllers/doctorController"); // Import the controller
 
 mongoose
   .connect(
@@ -22,32 +23,56 @@ mongoose
 
 app.use(
   cors({
-    origin: "http://localhost:5173/",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
 );
 app.use(bodyParser.json());
 
-// Setting up the server with WebSocket
-const server = http.createServer(app); // Create HTTP server using Express
-const wss = new WebSocket.Server({ server }); // Create WebSocket server
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
 
 // WebSocket connection handler
 wss.on("connection", (ws) => {
   console.log("New WebSocket connection");
 
-  // Send a message to the client when a new connection is established
+  // Send initial message to the client
   ws.send(JSON.stringify({ message: "Connected to WebSocket server" }));
 
-  // Handle incoming messages from the client
-  ws.on("message", (message) => {
-    console.log("Received message from client:", message);
-    // Optionally, send a response back to the client
-    ws.send(JSON.stringify({ message: "Received your message" }));
+  // Listen for incoming WebSocket messages (e.g., symptoms data)
+  ws.on("message", async (message) => {
+    try {
+      const { symptoms } = JSON.parse(message); // Parse the incoming message to get the symptoms
+      console.log("Symptoms received: ", symptoms);
+
+      if (!symptoms) {
+        ws.send(
+          JSON.stringify({
+            message: "No symptoms provided in the WebSocket message.",
+          })
+        );
+        return;
+      }
+
+      // Call matchDoctorByQuery function
+      const bestMatch = await matchDoctorByQuery({ body: { symptoms } });
+
+      // Send the best match response back to the client
+      if (bestMatch) {
+        ws.send(
+          JSON.stringify({ message: "Doctor match found", data: bestMatch })
+        );
+      } else {
+        ws.send(JSON.stringify({ message: "No doctor found for the query" }));
+      }
+    } catch (error) {
+      console.error("Error processing message:", error);
+      ws.send(JSON.stringify({ message: "Error processing the request" }));
+    }
   });
 
-  // Handle connection closure
+  // Handle WebSocket closure
   ws.on("close", () => {
     console.log("WebSocket connection closed");
   });

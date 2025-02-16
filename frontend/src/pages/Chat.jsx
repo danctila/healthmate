@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const Chat = () => {
   useEffect(() => {
     // Create a WebSocket connection to the Render-hosted backend
-    const socket = new WebSocket("wss://healthmate.onrender.com");
+    const socket = new WebSocket("https://healthmate-29mv.onrender.com");
 
     // Handle the connection opening
     socket.onopen = () => {
