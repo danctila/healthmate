@@ -7,13 +7,8 @@ import FindCare from "./pages/FindCare";
 import Account from "./pages/Account";
 import TestNav from "./components/TestNav";
 import AuthPage from "./pages/AuthPage";
-import AboutUs from "./pages/AboutUs";
-import LoginSignupModals from "./pages/LoginSignupModals";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Chat from "./pages/Chat";
 import AboutUs from "./pages/AboutUs";
-import LoginSignupModals from "./pages/LoginSignupModals";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
