@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth } from "../firebase"; // Ensure you have configured Firebase
+import { auth } from "../firebase";
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -18,6 +18,7 @@ const Login = () => {
     setError("");
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      const user = console.log(auth.currentUser);
       navigate("/");
     } catch (err) {
       setError(err.message);
