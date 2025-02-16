@@ -52,7 +52,7 @@ wss.on("connection", (ws) => {
   ws.on("message", (message) => {
     console.log("Received message from client:", JSON.parse(message));
 
-    ws.send(JSON.stringify({ message: "Received your message" }));
+    ws.send(JSON.stringify({ message: JSON.parse(message) }));
   });
 
   ws.on("close", () => {
