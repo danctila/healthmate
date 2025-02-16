@@ -63,19 +63,15 @@ const cosineSimilarity = (vec1, vec2) => {
 const matchDoctorWithQuery = async (query) => {
   if (!query) return null;
 
-  // Get the embedding for the query
   const queryEmbedding = await getBatchEmbeddings([query.toLowerCase()]);
 
-  // Retrieve doctors' embeddings from MongoDB
   const doctorEmbeddings = await Doctor.find().select(
     "first_name last_name specialty_1 specialty_2 embeddings city state"
   );
 
   const similarityScores = [];
 
-  // Iterate through doctors and their embeddings
   for (let doctor of doctorEmbeddings) {
-    // Loop through each specialty and its corresponding embedding
     doctor.embeddings.forEach(({ specialty, embedding }) => {
       const similarity = cosineSimilarity(queryEmbedding[0], embedding);
       similarityScores.push({

@@ -14,7 +14,7 @@ const matchDoctorByQuery = async (req, res) => {
         .status(404)
         .json({ message: "No doctor found matching the query" });
     }
-
+    console.log("Best match is ", bestMatch);
     res.status(200).json(bestMatch);
   } catch (error) {
     res.status(500).json({ message: error.message });
