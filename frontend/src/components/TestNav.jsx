@@ -39,14 +39,7 @@ const TestNav = () => {
                 Find Care
               </Link>
             </li>
-            <li>
-              <Link
-                to="/about"
-                className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
-              >
-                About Us
-              </Link>
-            </li>
+
             <li>
               <Link
                 to="/doctors"
@@ -61,6 +54,14 @@ const TestNav = () => {
                 className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
               >
                 Find Emergency Care
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
+              >
+                About Us
               </Link>
             </li>
           </ul>
