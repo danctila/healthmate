@@ -12,9 +12,6 @@ const Chatbot = ({ width = "100%", height = "100%" }) => {
         botId: "a1de2a94-bd9a-4b94-ac53-6dd6adf875b2",
         configuration: {
           botName: "HealthMate",
-          botAvatar:
-            "https://files.bpcontent.cloud/2025/02/16/14/20250216144920-LE0OIDH6.png",
-          botDescription: "AI Empowered Healthcare Finder",
           website: {},
           email: {
             title: "gohealthmate@gmail.com",
@@ -23,7 +20,7 @@ const Chatbot = ({ width = "100%", height = "100%" }) => {
           phone: {},
           termsOfService: {},
           privacyPolicy: {},
-          color: "#9661d0",
+          color: "#3B82F6",
           variant: "solid",
           themeMode: "light",
           fontFamily: "inter",
@@ -32,6 +29,7 @@ const Chatbot = ({ width = "100%", height = "100%" }) => {
             "https://files.bpcontent.cloud/2025/02/16/10/20250216105359-6T1V2SEE.css",
         },
         clientId: "54c7b5aa-686a-4c02-943d-888a807ba774",
+        containerMountSelector: "#webchat-container",
       });
     };
 
