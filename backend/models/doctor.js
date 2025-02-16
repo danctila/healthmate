@@ -16,6 +16,12 @@ const doctorSchema = new mongoose.Schema({
   ind_pac_id: { type: String },
   ind_enrl_id: { type: String },
   facility_name: { type: String },
+  embeddings: [
+    {
+      specialty: String,
+      embedding: [Number],
+    },
+  ],
 });
 
 const Doctor = mongoose.model("Doctor", doctorSchema, "hcp_data");
