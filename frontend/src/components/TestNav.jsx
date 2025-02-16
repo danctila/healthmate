@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import LoginSignupModals from "../pages/LoginSignupModals";
 const TestNav = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
   return (
     <div className="w-full">
       <nav className="flex justify-center items-center bg-gradient-to-b from-gray-100 to-white text-gray-900 py-4 px-6 w-full shadow-md">
@@ -50,9 +55,19 @@ const TestNav = () => {
                 Account
               </Link>
             </li>
+            <li>
+              {/* Replaced Link with a button to open the modal */}
+              <button
+                className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
+                onClick={openModal}
+              >
+                Login
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
+      <LoginSignupModals showModal={showModal} closeModal={closeModal} />
     </div>
   );
 };
