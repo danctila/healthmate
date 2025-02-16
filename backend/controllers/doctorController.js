@@ -1,14 +1,14 @@
 const doctorService = require("../services/doctorService");
 
 const matchDoctorByQuery = async (req, res) => {
-  const { query } = req.body;
-
+  const { symptoms } = req?.body;
+  console.log("Query received is ", symptoms);
   try {
-    if (!query) {
+    if (!symptoms) {
       return res.status(400).json({ message: "Query is required" });
     }
 
-    const bestMatch = await doctorService.matchDoctorWithQuery(query);
+    const bestMatch = await doctorService.matchDoctorWithQuery(symptoms);
     if (!bestMatch) {
       return res
         .status(404)
