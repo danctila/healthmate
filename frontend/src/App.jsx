@@ -7,7 +7,7 @@ import FindCare from "./pages/FindCare";
 import Account from "./pages/Account";
 import TestNav from "./components/TestNav";
 import AuthPage from "./pages/AuthPage";
-
+import Chat from "./pages/Chat";
 function App() {
   return (
     <>
@@ -19,6 +19,7 @@ function App() {
           <Route path="/care" element={<FindCare />} />
           <Route path="/account" element={<Account />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </AuthProvider>
     </>
