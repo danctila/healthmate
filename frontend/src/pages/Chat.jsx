@@ -19,17 +19,10 @@ const Chat = () => {
       console.log("Received from server:", data);
     };
 
-    // Handle WebSocket errors
     socket.onerror = (error) => {
       console.error("WebSocket error:", error);
     };
 
-    // Handle WebSocket connection closure
-    socket.onclose = () => {
-      console.log("Disconnected from WebSocket server");
-    };
-
-    // Clean up the WebSocket connection when the component is unmounted
     return () => {
       socket.close();
     };
