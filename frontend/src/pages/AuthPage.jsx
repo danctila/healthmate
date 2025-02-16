@@ -92,16 +92,16 @@ function AuthPage() {
   // -----------------------------------
   if (currentUser) {
     return (
-      <div className="auth-container">
+      <div className="">
         <h2>Account Details</h2>
-        {error && <p className="error-message">{error}</p>}
-        {success && <p className="success-message">{success}</p>}
+        {error && <p className="">{error}</p>}
+        {success && <p className="">{success}</p>}
 
         <p>
           Logged in as <strong>{currentUser.email}</strong>
         </p>
 
-        <button onClick={handleLogout} className="logout-button">
+        <button onClick={handleLogout} className="">
           Log Out
         </button>
       </div>
@@ -112,13 +112,13 @@ function AuthPage() {
   // If user is NOT logged in:
   // -----------------------------------
   return (
-    <div className="auth-container">
+    <div className="">
       <h2>{isLogin ? "Log In" : "Sign Up"}</h2>
 
-      {error && <p className="error-message">{error}</p>}
-      {success && <p className="success-message">{success}</p>}
+      {error && <p className="">{error}</p>}
+      {success && <p className="">{success}</p>}
 
-      <form onSubmit={handleSubmit} className="auth-form">
+      <form onSubmit={handleSubmit} className="">
         <label>Email</label>
         <input
           type="email"
@@ -150,11 +150,11 @@ function AuthPage() {
         <button type="submit">{isLogin ? "Log In" : "Sign Up"}</button>
       </form>
 
-      <button onClick={handleGoogleSignIn} className="google-button">
+      <button onClick={handleGoogleSignIn} className="">
         Sign in with Google
       </button>
 
-      <div className="toggle-auth">
+      <div className="">
         {isLogin ? (
           <>
             Don't have an account?{" "}
