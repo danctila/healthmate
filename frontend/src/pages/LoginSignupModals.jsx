@@ -5,19 +5,19 @@ import {
   createUserWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
 
 const LoginSignupModals = ({ showModal, closeModal }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Replacing useHistory with useNavigate
 
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard");
+      navigate("/dashboard"); // Using navigate instead of history.push
       closeModal();
     } catch (err) {
       setError("Login failed. Please check your credentials.");
