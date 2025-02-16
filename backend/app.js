@@ -50,8 +50,8 @@ wss.on("connection", (ws) => {
   ws.send(JSON.stringify({ message: "Connected to WebSocket server" }));
 
   ws.on("message", (message) => {
-    console.log("Received message from client:", message);
-    // Optionally, send a response back to the client
+    console.log("Received message from client:", JSON.parse(message));
+
     ws.send(JSON.stringify({ message: "Received your message" }));
   });
 
