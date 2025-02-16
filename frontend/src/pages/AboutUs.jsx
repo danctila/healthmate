@@ -1,6 +1,7 @@
 import React from "react";
 
 const AboutUs = () => {
+  const user = currentUser();
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white text-gray-900 px-6 py-12">
       <section className="text-center py-20">
