@@ -49,19 +49,19 @@ const TestNav = () => {
             </li>
             <li>
               <Link
-                to="/account"
+                to="/doctors"
                 className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
               >
-                Account
+                Find My Doctors
               </Link>
             </li>
             <li>
-              <button
+              <Link
+                to="/emergency"
                 className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
-                onClick={openModal}
               >
-                Login
-              </button>
+                Find Emergency Care
+              </Link>
             </li>
           </ul>
         </div>

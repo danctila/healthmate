@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const Home = () => {
   const services = [
     {
@@ -11,6 +12,11 @@ const Home = () => {
       title: "Get My Care",
       description: "Based on your symptoms, get personalized care.",
       icon: "🩺",
+    },
+    {
+      title: "View Emergency Care Hospitals",
+      description: "Find the nearest emergency care hospitals.",
+      icon: "🏥",
     },
   ];
 
@@ -39,11 +45,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 py-10">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
         {services.map((service, index) => (
           <div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+            className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
             <div className="text-4xl mb-4">{service.icon}</div>
             <h3 className="text-xl font-semibold mb-2">{service.title}</h3>

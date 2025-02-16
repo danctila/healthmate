@@ -11,6 +11,8 @@ import Chat from "./pages/Chat";
 import AboutUs from "./pages/AboutUs";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import DoctorsCard from "./pages/DoctorsCard";
+import EmergencyCare from "./pages/EmergencyCare";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/doctors" element={<DoctorsCard />} />
+          <Route path="/emergency" element={<EmergencyCare />} />
         </Routes>
       </AuthProvider>
     </>
