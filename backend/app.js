@@ -5,6 +5,8 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const http = require("http");
 const WebSocket = require("ws");
+const { setWSS } = require("./controllers/doctorController"); // Import WebSocket setter
+
 const app = express();
 
 mongoose
@@ -20,7 +22,7 @@ mongoose
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allow the frontend's local server
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
@@ -28,32 +30,15 @@ app.use(
 app.use(bodyParser.json());
 
 const server = http.createServer(app);
-const wss = new WebSocket.Server({
-  server,
-  perMessageDeflate: true,
-  verifyClient: (info, done) => {
-    const allowedOrigins = ["http://localhost:5173"]; // Frontend origin
-    const origin = info.origin;
+const wss = new WebSocket.Server({ server });
 
-    if (allowedOrigins.includes(origin)) {
-      done(true);
-    } else {
-      done(false, 403, "Forbidden"); // Reject if the origin is not allowed
-    }
-  },
-});
+// Pass WebSocket instance to doctorController
+setWSS(wss);
 
-// WebSocket connection handler
 wss.on("connection", (ws) => {
   console.log("New WebSocket connection");
 
   ws.send(JSON.stringify({ message: "Connected to WebSocket server" }));
-
-  ws.on("message", (message) => {
-    console.log("Received message from client:", JSON.parse(message));
-
-    ws.send(JSON.stringify({ message: JSON.parse(message) }));
-  });
 
   ws.on("close", () => {
     console.log("WebSocket connection closed");
