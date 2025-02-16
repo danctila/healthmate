@@ -46,14 +46,11 @@ wss.on("connection", (ws) => {
       const { symptoms } = JSON.parse(message); // Parse the incoming message to get the symptoms
       console.log("Symptoms received: ", symptoms);
 
-      if (!symptoms) {
-        ws.send(
-          JSON.stringify({
-            message: "No symptoms provided in the WebSocket message.",
-          })
-        );
-        return;
-      }
+      ws.send(
+        JSON.stringify({
+          message: symptoms,
+        })
+      );
 
       // Call matchDoctorByQuery function
       const bestMatch = await matchDoctorByQuery({ body: { symptoms } });
