@@ -56,7 +56,6 @@ const TestNav = () => {
               </Link>
             </li>
             <li>
-              {/* Replaced Link with a button to open the modal */}
               <button
                 className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
                 onClick={openModal}

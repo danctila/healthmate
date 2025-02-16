@@ -12,7 +12,7 @@ const LoginSignupModals = ({ showModal, closeModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Replacing useHistory with useNavigate
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {

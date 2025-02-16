@@ -32,7 +32,6 @@ app.use(bodyParser.json());
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-// Pass WebSocket instance to doctorController
 setWSS(wss);
 
 wss.on("connection", (ws) => {

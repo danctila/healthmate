@@ -15,6 +15,7 @@ const matchDoctorByQuery = async (req, res) => {
       return res.status(400).json({ message: "Query is required" });
     }
 
+    console.log("Query is ", symptoms);
     const bestMatch = await doctorService.matchDoctorWithQuery(symptoms);
     if (!bestMatch) {
       return res
@@ -24,10 +25,8 @@ const matchDoctorByQuery = async (req, res) => {
 
     console.log("Best match is ", bestMatch);
 
-    // Send the response back to the API caller
     res.status(200).json({ symptoms, bestMatch });
 
-    // Send the same data to all WebSocket clients
     if (wssInstance) {
       wssInstance.clients.forEach((client) => {
         if (client.readyState === 1) {

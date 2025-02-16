@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 const Chatbot = ({ width = "100%", height = "100%" }) => {
   useEffect(() => {
-    // Initialize Botpress Webchat
     const initializeBotpress = () => {
       window.botpress?.on("webchat:ready", () => {
         window.botpress?.open();
@@ -33,7 +32,6 @@ const Chatbot = ({ width = "100%", height = "100%" }) => {
       });
     };
 
-    // Load Botpress script if not already loaded
     if (!window.botpress) {
       const script = document.createElement("script");
       script.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
