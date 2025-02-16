@@ -33,7 +33,7 @@ const TestNav = () => {
             </li>
             <li>
               <Link
-                to="/care"
+                to="/chat"
                 className="text-gray-900 hover:text-blue-500 transition-colors duration-300 px-4 py-2"
               >
                 Find Care

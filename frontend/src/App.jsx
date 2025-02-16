@@ -22,7 +22,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<ContactDirectory />} />
-          <Route path="/care" element={<FindCare />} />
           <Route path="/account" element={<Account />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/about" element={<AboutUs />} />
