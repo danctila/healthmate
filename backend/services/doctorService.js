@@ -1,48 +1,40 @@
-const Doctor = require("../models/doctor"); // Importing the Doctor model
-const natural = require("natural"); // Importing the Natural library for TF-IDF
+const Doctor = require("../models/doctor");
+const natural = require("natural");
 
 const tfidf = new natural.TfIdf();
 
-// Function to vectorize the specialties
 const vectorizeSpecialties = async () => {
   const doctors = await Doctor.find();
+  console.log(doctors.length, "doctors found");
+  tfidf.documents = [];
   doctors.forEach((doctor) => {
     if (doctor.specialty_1) {
-      tfidf.addDocument(doctor.specialty_1);
+      tfidf.addDocument({
+        specialty: doctor.specialty_1.toLowerCase(),
+        doctor,
+      });
+    }
+    if (doctor.specialty_2) {
+      tfidf.addDocument({
+        specialty: doctor.specialty_2.toLowerCase(),
+        doctor,
+      });
     }
   });
+
   return doctors;
 };
 
 const matchDoctorWithQuery = async (query) => {
-  const queryVector = new natural.TfIdf();
-  queryVector.addDocument(query);
-  const doctors = await Doctor.find({});
-  let bestMatch = { doctor: null, similarity: -1 };
-  doctors.forEach((doctor, index) => {
-    if (doctor.specialty_1) {
-      const similarity = tfidf.tfidfs(
-        doctor.specialty_1.toLocaleLowerCase(),
-        (i, measure) => {
-          console.log("document:", i, ":", measure);
-          if (measure > bestMatch.similarity) {
-            bestMatch = { doctor, similarity: measure };
-          }
-        }
-      );
-    }
-    if (doctor.specialty_2) {
-      const similarity = tfidf.tfidfs(
-        doctor.specialty_2.toLocaleLowerCase(),
-        (i, measure) => {
-          console.log("document:", i, ":", measure);
+  if (!query) return null;
 
-          if (measure > bestMatch.similarity) {
-            bestMatch = { doctor, similarity: measure };
-          }
-        }
-      );
-      console.log("similarity:", similarity);
+  let bestMatch = { doctor: null, similarity: -1 };
+
+  const queryLower = query.toLowerCase();
+
+  tfidf.tfidfs(queryLower, (i, measure) => {
+    if (measure > bestMatch.similarity) {
+      bestMatch = { doctor: tfidf.documents[i].doctor, similarity: measure };
     }
   });
 

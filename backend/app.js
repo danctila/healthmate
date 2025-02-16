@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 const doctorRoutes = require("./routes/doctorRoutes");
+const { vectorizeSpecialties } = require("./services/doctorService");
 
 mongoose
   .connect(
@@ -20,6 +21,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api/doctors", doctorRoutes);
+
+vectorizeSpecialties().then(() => {
+  console.log("TF-IDF model initialized with doctor specialties.");
+});
 
 // Start the server
 const PORT = process.env.PORT || 5001;

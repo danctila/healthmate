@@ -1,7 +1,7 @@
 const doctorService = require("../services/doctorService");
 
 const matchDoctorByQuery = async (req, res) => {
-  const { query } = req.query;
+  const { query } = req.body;
 
   try {
     if (!query) {
